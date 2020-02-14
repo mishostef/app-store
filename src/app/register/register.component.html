@@ -1,0 +1,28 @@
+<p>register works!</p>
+<div class="row">
+  <form [formGroup]="registerForm" class="col-sm-4 bg-primary" #regf (ngSubmit)="registerHandler()">
+      <div>
+        <label for="username">Enter username:</label>
+        <input type="text" formControlName="username" #username rows="10" mdbInput >
+      </div>
+      <p *ngIf="((!registerForm.get('username').valid)&&(!registerForm.pristine))">Not valid username!</p>
+      <div>
+        <label for="password">Enter password:</label>
+        <input type="text" formControlName="password" #password mdbInput >
+      </div>
+      <p *ngIf="((!registerForm.get('password').valid)&&(!registerForm.pristine))">Not valid pass!</p>
+      <div>
+        <label for="email">Your email:</label>
+        <input type="text" formControlName="email" #email mdbInput >
+      </div>
+      <p *ngIf="((!registerForm.get('email').valid)&&(!registerForm.pristine))">Not valid email!</p>
+      <div>
+        <label for="reemail">Enter your email again:</label>
+        <input type="text" formControlName="reemail" #reemail mdbInput >
+      </div>
+      <p *ngIf="((!registerForm.get('reemail').valid)&&(!registerForm.pristine))">Not valid username!</p>
+      <p *ngIf="(registerForm.pristine)">Fill in the form!</p>
+      <button class="bg-danger">Register</button>
+  </form>
+
+<div>

@@ -1,0 +1,13 @@
+<div class="row">
+    <form [formGroup]="postForm" class="col-sm-4 bg-primary" #postf (ngSubmit)="postHandler()">
+        <div>
+            <label for="postMessage">Your message:</label>
+            <textarea type="text" formControlName="postMessage" #postMessage rows="10" mdbInput ></textarea>
+        </div>
+        <div>
+            <label for="author">Written by:</label>
+            <input type="text" formControlName="author" #author >
+        </div>
+        <button class="bg-danger">Create post:</button>
+    </form>
+<div>

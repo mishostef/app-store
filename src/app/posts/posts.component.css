@@ -1,0 +1,9 @@
+label{
+    display:block; 
+    float:left;
+    margin-left:10px;
+    width:100px;    
+    }
+textarea,input{
+    color: blue;
+}
