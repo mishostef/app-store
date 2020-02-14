@@ -19,12 +19,12 @@ export class RegisterComponent implements OnInit {
   }
   constructor(private registerService: RegisterService, private router: Router) {
     this.registerForm = this.fb.group({
-    username: ['',[Validators.required]],
-    password: ['',[Validators.required]],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
    // repassword:['',[Validators.required]],
-    email: ['',[Validators.required]],
-  reemail: ['',Validators.required]
-  },{validators:[new PasswordMatchDirective]});
+    email: ['', [Validators.required]],
+  reemail: ['', Validators.required]
+  }, {validators: [ new PasswordMatchDirective() ]});//pass function instead
   }
 
     registerHandler() {
