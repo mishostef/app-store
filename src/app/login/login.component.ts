@@ -1,7 +1,7 @@
-import { Component, OnInit,AfterContentChecked,AfterViewChecked} from '@angular/core';
+import { Component, OnInit, AfterContentChecked, AfterViewChecked} from '@angular/core';
 import {LoginService} from './login.service';
 import { Observable } from 'rxjs';
-import{ User } from '../interfaces/User';
+import { User } from '../interfaces/User';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,27 +16,15 @@ export class LoginComponent implements OnInit {
   users: User[];
   logged: boolean;
   ngOnInit() {
-  // const usersObservable = this.loginService.getUsers();
-   //usersObservable.subscribe(users => this.users = users);
-
   }
 
   loginHandler(data) {
-    let subscription= this.loginService.getUsers()
-    .subscribe(
-      users=>{(users
-        .filter(x=>(x.username==((data as User).username))))
-        .length!==0?
-        this.logged=true:
-        this.logged=false;
-      },
-      err=>console.error('observable got an error' + err)
-    );
-
-   if(this.logged)setTimeout(() => {
-      subscription.unsubscribe();
-      this.router.navigateByUrl('/posts');
+   this.loginService.Log(data);
+   this.logged = this.loginService.isLogged();
+   if (this.logged) {setTimeout(() => {
+       this.router.navigateByUrl('/posts');
     }, 2000);
+   }
   }
 
 }

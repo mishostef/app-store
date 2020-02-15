@@ -6,16 +6,32 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class LoginService {
     private usersUrl = '/login';
-
+    private logged: boolean = false;
     constructor(private http: HttpClient) {}
 
     // get("/api/users")
-    getUsers(): Observable<User[]>{
+    getUsers(): Observable<User[]> {
       return this.http.get<any>('/api/users')
       .pipe(map((res) => res as User[]));
     }
+    isLogged():boolean{
+      return this.logged;
+    }
+    Log(data){
+      this.getUsers().toPromise()
+      .then(
+        users => {(users
+          .filter(x => (x.username === ((data as User).username))))
+          .length !== 0 ?
+          this.logged = true :
+          this.logged = false;
+        },
 
-    // post("/login")
+      ).catch(err=>console.error(err));
+    }
+
+
+       // post("/login")
     createUser(newUser: User): Observable<User> {
       console.log('new user is' + newUser.username);
       return this.http.post(this.usersUrl, newUser)
