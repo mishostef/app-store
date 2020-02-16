@@ -14,6 +14,7 @@ import { ComponentListContainerComponent } from './component-list-container/comp
 import { PostsComponent } from './posts/posts.component';
 import { RegisterComponent } from './register/register.component';
 import { PasswordMatchDirective } from './shared/directives/password-match.directive';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { PasswordMatchDirective } from './shared/directives/password-match.direc
     ComponentListContainerComponent,
     PostsComponent,
     RegisterComponent,
-    PasswordMatchDirective
+    PasswordMatchDirective,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
