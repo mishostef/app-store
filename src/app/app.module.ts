@@ -15,6 +15,7 @@ import { PostsComponent } from './posts/posts.component';
 import { RegisterComponent } from './register/register.component';
 import { PasswordMatchDirective } from './shared/directives/password-match.directive';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ProductsComponent } from './products/products.component';
     PostsComponent,
     RegisterComponent,
     PasswordMatchDirective,
-    ProductsComponent
+    ProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

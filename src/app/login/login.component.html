@@ -11,10 +11,10 @@
       <input  #passwordInput="ngModel"  ngModel type="text" name="password">
     </div>
     <button class="btn btn-success">Login</button>
+    <p [ngStyle]="{'background-color': logged?'green':'red'}">
+      {{ logged?'Successfully logged in!!!':'Not logged in!!!'}}
+    </p>
   </form>
   </div>
 </div>
-<p [ngStyle]="{'background-color': logged?'green':'red'}">
-  {{ logged?'Successfully logged in!!!':'Not logged in!!!'}}
-</p>
 
