@@ -10,6 +10,16 @@ export class ProductDetailsComponent implements OnInit {
   @Input()
   product: Product;
 
+  countToBuy:number = 0;
+  increment(){
+    if(this.countToBuy < this.product.inStock)
+    this.countToBuy++;
+  }
+  decrement(){
+    if(this.countToBuy>=1)
+    this.countToBuy--;
+  }
+
   constructor() { }
 
   ngOnInit() {

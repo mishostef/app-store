@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class LoginService {
     private usersUrl = '/login';
-    private logged: boolean = false;
+    private logged = false;
     constructor(private http: HttpClient) {}
 
     // get("/api/users")
@@ -14,20 +14,22 @@ export class LoginService {
       return this.http.get<any>('/api/users')
       .pipe(map((res) => res as User[]));
     }
-    isLogged():boolean{
+    isLogged(): boolean {
       return this.logged;
     }
-    Log(data){
+    Log(data) {
       this.getUsers().toPromise()
       .then(
         users => {(users
-          .filter(x => (x.username === ((data as User).username))))
+          .filter(x => ((x.username === ((data as User).username)) && ((x.password === ((data as User).password)))
+          )))
           .length !== 0 ?
           this.logged = true :
           this.logged = false;
-        },
+                  localStorage.setItem('logged', this.logged.toString());
+        }
 
-      ).catch(err=>console.error(err));
+      ).catch(err => console.error(err));
     }
 
 

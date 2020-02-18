@@ -1,3 +1,4 @@
+import {LoginService}from './login/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +41,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
