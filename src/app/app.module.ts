@@ -2,7 +2,7 @@ import {LoginService}from './login/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ContactDetailsComponent } from './contacts/contact-details/contact-details.component';
@@ -17,7 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { PasswordMatchDirective } from './shared/directives/password-match.directive';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import {AppInterceptor} from './app-interceptor';
+import { AllPostsComponent } from './all-posts/all-posts.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     RegisterComponent,
     PasswordMatchDirective,
     ProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,14 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

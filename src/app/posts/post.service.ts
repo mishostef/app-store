@@ -27,6 +27,11 @@ postsUrl= '/posts';
       .pipe(map((res) => res as Post));
     }
 
+    // get("/api/posts/all")
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<any>('/api/posts/all')
+    .pipe(map( (res) => res as Post[]));
+  }
 
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :

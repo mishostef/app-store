@@ -10,4 +10,7 @@
         </div>
         <button class="bg-danger">Create post:</button>
     </form>
-<div>
+</div>
+<div *ngFor="let post of allposts">
+  <app-all-posts [post] = "post"></app-all-posts>
+</div>

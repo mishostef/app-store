@@ -11,14 +11,20 @@ import {Post} from '../interfaces/Post';
 export class PostsComponent implements OnInit {
   postForm: FormGroup;
   fb = new FormBuilder();
+  allposts: Post[];
 
   ngOnInit() {
+
   }
   constructor(private postService: PostService) {
     this.postForm = new FormGroup({
     postMessage: new FormControl(''),
     author: new FormControl(''),
   });
+
+  this.postService.getAllPosts()
+    .subscribe(allposts => this.allposts = allposts);
+
   }
 
     postHandler() {
