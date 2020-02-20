@@ -19,6 +19,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {AppInterceptor} from './app-interceptor';
 import { AllPostsComponent } from './all-posts/all-posts.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
   ],
   providers: [
     LoginService,
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,

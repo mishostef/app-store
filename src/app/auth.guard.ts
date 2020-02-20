@@ -14,6 +14,6 @@ constructor(private loginService: LoginService) {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return !!localStorage.getItem('logged');
-      //return this.loginService.isLogged();
+    // return this.loginService.isLogged(); //doesn't work
   }
 }
