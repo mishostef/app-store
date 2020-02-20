@@ -8,6 +8,7 @@ var USERS_COLLECTION = "users";
 var path =require("path");
 var distDir =  path.join(__dirname , '/../' , '/../', '/dist/');
 var usersPath = '/login';
+const jwt = require('../jwt');
 
 module.exports=(app)=>{
   app.use(express.static(distDir));
@@ -44,19 +45,24 @@ function handleError(res, reason, message, code) {
 app.post(usersPath, function (req, res) {
   var newUser = req.body;
 
-  console.log('new user in server: ');
-  newUser.createDate = new Date();
+  console.log('current user in server: '+ newUser.username+' '+ newUser.password);
+  //newUser.createDate = new Date();
 
   if (!req.body.username) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   } else {
-    db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+   // db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc)
+  var currUser = db.collection(USERS_COLLECTION).findOne({"username":newUser.username})/*, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to create new contact.");
       } else {
         res.status(201).json(doc.ops[0]);
       }
-    });
+    });*/
+.then(u=>{console.log(`yes! ${JSON.stringify(u)}`);
+const token = jwt.createToken({ id: u._id });
+          res.cookie('userCookie', token).send(u);
+});
   }
 });
 

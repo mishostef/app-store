@@ -19,12 +19,18 @@ export class LoginComponent implements OnInit {
   }
 
   loginHandler(data) {
-   this.loginService.Log(data);
-   this.logged = this.loginService.isLogged();
+let p1=  this.loginService.logUser(data).toPromise();
+p1.then(()=>
+   this.logged = this.loginService.isLogged());
    if (this.logged) {setTimeout(() => {
        this.router.navigateByUrl('/posts');
     }, 2000);
    }
+
   }
+
+
+
+
 
 }

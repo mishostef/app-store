@@ -10,9 +10,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-products: IProduct[]; /*= [{imageUrl: '/assets/images/1.jpg', price : 3, inStock: 2} ,
-{imageUrl: '/assets/images/1.jpg',  price: 3, inStock: 2} ] as IProduct[];
-*/
+products: IProduct[];
 
   constructor(private productService: ProductService) {
     this.productService.getAllProducts()
