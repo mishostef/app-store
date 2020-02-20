@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" *ngIf="visible">
 <div class="col-sm-8"></div>
 <div class="col-sm-4">
 <form #loginForm="ngForm"  (ngSubmit)="loginHandler(loginForm.value)">
@@ -10,7 +10,7 @@
       <label for="passwordInput">Password:</label>
       <input  #passwordInput="ngModel"  ngModel type="text" name="password">
     </div>
-    <button class="btn btn-success">Login</button>
+    <button class="btn btn-success" [disabled]="logged">Login</button>
     <p [ngStyle]="{'background-color': logged?'green':'red'}">
       {{ logged?'Successfully logged in!!!':'Not logged in!!!'}}
     </p>

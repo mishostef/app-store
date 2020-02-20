@@ -15,22 +15,25 @@ export class LoginComponent implements OnInit {
   constructor( private loginService: LoginService, private router: Router) { }
   users: User[];
   logged: boolean;
+  visible = true;
   ngOnInit() {
   }
 
   loginHandler(data) {
-let p1=  this.loginService.logUser(data).toPromise();
-p1.then(()=>
-   this.logged = this.loginService.isLogged());
-   if (this.logged) {setTimeout(() => {
+
+   this.loginService.logUser(data).toPromise().
+  then(() => {
+    this.logged = this.loginService.isLogged();
+     }).then(() => {
+  console.log(`logger in login handler= ${this.logged}`);
+  if (this.logged) {setTimeout(() => {
+       this.visible = false;
        this.router.navigateByUrl('/posts');
     }, 2000);
    }
 
+  });
+
   }
-
-
-
-
 
 }
