@@ -50,7 +50,6 @@ console.log(JSON.stringify(newUser));
 
 
 app.get("*", function(req, res) {
-
       res.sendFile('index.html',{root:distDir});
 
 });
