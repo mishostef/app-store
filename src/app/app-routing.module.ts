@@ -1,3 +1,4 @@
+import {LoginService} from './login/login.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
@@ -11,8 +12,9 @@ import {ProductsComponent} from './products/products.component';
 import {AuthGuard} from './auth.guard';
 import { from } from 'rxjs';
 
+
 const routes: Routes = [
-  { path: 'login', component: LoginComponent} ,
+  { path: 'login', component: LoginComponent } ,
   {path: 'contacts', component: ComponentListContainerComponent},
   {path: 'posts', component: PostsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
@@ -28,7 +30,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthGuard],
+  providers: [LoginService, AuthGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

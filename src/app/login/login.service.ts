@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '.././interfaces/User';
 import { HttpClient } from '@angular/common/http';
-import {map,tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -41,8 +41,6 @@ export class LoginService {
       console.log(`service logout called!`)
       this.cookieService.delete('userCookie');
       localStorage.clear();
-      // return this.http.post('/logout', {}).pipe(tap(() => {
       this.currentUser = null;
-     // }));
     }
 }
