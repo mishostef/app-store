@@ -57,8 +57,4 @@ module.exports = (app) => {
     }
   })
 
-  app.post('/logout', function (req, res) {
-    console.log(`I'm in server logout`)
-    console.log(req)
-  })
 }
