@@ -1,4 +1,4 @@
-import {LoginService}from './login/login.service';
+import {LoginService} from './login/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
