@@ -1,5 +1,8 @@
 div>div{
-  padding: 3px;
+  padding: 10px;
   margin: 2px;
-  border: 1px solid greenyellow;
+  border: 2px solid greenyellow;
+}
+button{
+  margin: 2px;
 }

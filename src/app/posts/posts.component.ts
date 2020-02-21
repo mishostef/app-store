@@ -33,6 +33,8 @@ export class PostsComponent implements OnInit {
        let date = new Date();
        let currentPost = new Post(date,message,author);
        this.postService.createPost(currentPost).toPromise();
+       this.postService.getAllPosts()
+    .subscribe(allposts => this.allposts = allposts);
     }
 
 }

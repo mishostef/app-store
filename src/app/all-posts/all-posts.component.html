@@ -2,5 +2,8 @@
   <div #postItem class="col-sm-4 bg-warning">
     <p>message:{{post.postMessage}}</p>
     <p>author:{{post.author}}</p>
+    <p>published on:{{post.publishDate| date: 'short'}}</p>
+    <button #like>like</button>
+    <button #dislike>dislike</button>
   </div>
 </div>
