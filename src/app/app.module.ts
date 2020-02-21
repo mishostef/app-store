@@ -20,6 +20,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import {AppInterceptor} from './app-interceptor';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { CookieService } from 'ngx-cookie-service';
+import { StyleDirective } from './shared/directives/style.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CookieService } from 'ngx-cookie-service';
     PasswordMatchDirective,
     ProductsComponent,
     ProductDetailsComponent,
-    AllPostsComponent
+    AllPostsComponent,
+    StyleDirective
   ],
   imports: [
     BrowserModule,

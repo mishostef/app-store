@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Post} from '../interfaces/Post';
+import {StyleDirective} from '../shared/directives/style.directive'
 @Component({
   selector: 'app-all-posts',
   templateUrl: './all-posts.component.html',
@@ -12,5 +13,11 @@ post: Post;
 
   ngOnInit() {
   }
+like() {
+  this.post.likes++;
+}
+dislike() {
+  this.post.dislikes++;
+}
 
 }
