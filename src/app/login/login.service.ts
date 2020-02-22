@@ -7,10 +7,12 @@ import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable()
+
 export class LoginService {
     private usersUrl = '/login';
     private visible = false;
     private currentUser : User;
+
     constructor(private http: HttpClient,
                 private cookieService: CookieService ) {}
 
@@ -31,8 +33,10 @@ export class LoginService {
     logUser(newUser: User): Observable<User> {
       console.log('log user... ' + newUser.username);
       return this.http.post(this.usersUrl, newUser)
-      .pipe(map((res) => res as User)).pipe(tap(res => {
-       this.currentUser = res;
+      .pipe(map((res=>res as User)))
+      .pipe(tap(res => {
+        console.log('res is'+res)
+        this.currentUser = res;
        console.log(`currentUser is : ${JSON.stringify(this.currentUser)}`);
       }));
     }
