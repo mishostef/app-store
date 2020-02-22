@@ -48,13 +48,19 @@ module.exports = (app) => {
     if (!req.body.username) {
       handleError(res, 'Invalid user input', 'Must provide a name.', 400)
     } else {
-      var currUser = db.collection(USERS_COLLECTION).findOne({ username: newUser.username })
-      currUser.then(u => {
-        console.log(`yes! ${JSON.stringify(u)}`)
-        const token = jwt.createToken({ id: u._id })
-        res.cookie('userCookie', token).send(u)
+      var currUser = db.collection(USERS_COLLECTION).findOne({ username: newUser.username,password:newUser.password })
+      currUser.then(u =>{
+        if(!u)
+        handleError(res, 'Invalid user input', 'Err in name or pass.', 400);
+        else
+        success(res,u)
       })
     }
   })
+
+function success(res,u){
+  const token = jwt.createToken({ id: u._id })
+  res.cookie('userCookie', token).send(u)
+}
 
 }
