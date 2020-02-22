@@ -1,18 +1,22 @@
 import { Component, OnInit, AfterContentChecked, AfterViewChecked} from '@angular/core';
 import {LoginService} from './login.service';
-import { Observable } from 'rxjs';
+import { Observable, from  } from 'rxjs';
+import { map} from 'rxjs/operators';
 import { User } from '../interfaces/User';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {AppReolverService} from '../shared/resolvers/app-reolver.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  providers: [LoginService,AppReolverService]
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private loginService: LoginService, private router: Router) { }
+  constructor( private loginService: LoginService, private router: Router,
+    private actr: ActivatedRoute) {
+      this.actr.data.pipe(map((d)=>d.cres)).subscribe(x=>console.log(x));
+     }
   users: User[];
   logged: boolean;
   visible = true;
@@ -32,7 +36,7 @@ export class LoginComponent implements OnInit {
     }, 2000);
    }
 
-  }).catch(err=>console);
+  }).catch(err=>console.error(err));
 
   }
 
