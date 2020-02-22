@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,8 +11,10 @@ import { Router } from '@angular/router';
 })
 
 export class NavigationComponent implements OnInit {
-  @Input()
+
   logged: boolean;
+  username: string;
+
   constructor(
     private loginService: LoginService,
     private router: Router
