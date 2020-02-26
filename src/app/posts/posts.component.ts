@@ -14,7 +14,6 @@ export class PostsComponent implements OnInit {
   allposts: Post[];
 
   ngOnInit() {
-
   }
   constructor(private postService: PostService) {
     this.postForm = new FormGroup({

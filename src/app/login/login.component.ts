@@ -9,35 +9,37 @@ import {AppReolverService} from '../shared/resolvers/app-reolver.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService,AppReolverService]
+  providers: [LoginService, AppReolverService]
 })
 export class LoginComponent implements OnInit {
 
   constructor( private loginService: LoginService, private router: Router,
-    private actr: ActivatedRoute) {
-      this.actr.data.pipe(map((d)=>d.cres)).subscribe(x=>console.log(x));
+               private actr: ActivatedRoute) {
+      this.actr.data.pipe(map((d) => d.cres)).subscribe(x => console.log(x));
      }
   users: User[];
-  logged: boolean;
+  public logged: boolean;
   visible = true;
   ngOnInit() {
   }
 
   loginHandler(data) {
 
-   this.loginService.logUser(data).toPromise().
-  then(() => {
+   this.loginService.logUser(data as User).
+subscribe(() => {
     this.logged = this.loginService.isLogged();
-     }).then(() => {
-  console.log(`logger in login handler= ${this.logged}`);
-  if (this.logged) {setTimeout(() => {
-       this.visible = false;
-       this.router.navigateByUrl('/posts');
+    localStorage.setItem('logged', this.logged.toString());///
+    console.log('in serice logged:' + this.logged);
+    console.log('localst. inservice:' + localStorage.getItem('logged'));
+
+    setTimeout(() => {
+           this.router.navigate(['posts']);
+           localStorage.setItem('logged', this.logged.toString());
     }, 2000);
-   }
 
-  }).catch(err=>console.error(err));
 
+}, console.error);
   }
+
 
 }

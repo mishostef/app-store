@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {of, Observable} from 'rxjs';
 
 
 @Component({
@@ -12,23 +12,32 @@ import { Observable } from 'rxjs';
 
 export class NavigationComponent implements OnInit {
 
-  logged: boolean;
-  username: string;
+username: string;
 
-  constructor(
+//
+constructor(
     private loginService: LoginService,
     private router: Router
-  ) {
+  ){
   }
 
-  ngOnInit() {
-    this.logged = !!localStorage.getItem('logged');
-    console.log(`in navigation logged=${this.logged}`);
-  }
+ngOnInit() {
+    console.log('in nav logged:' + this.loginService.isLogged());
+    console.log('in nav local:' + localStorage.getItem('logged')); //
+     //
+}
 
-  logout() {
+logged(): boolean {
+     return  localStorage.getItem('logged') === 'true' ? true : false;
+   }
+
+
+logout(){
     this.loginService.logout();
+    console.log('local storage:' + localStorage.getItem('logged'));
+    console.log('in logout logged:' + this.logged());
     this.router.navigate(['']);
+
   }
 
 

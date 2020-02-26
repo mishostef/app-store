@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/contacts">Contacts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a [ngClass]="logged()?'nav-link disabled':'nav-link'" routerLink="/login">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/posts">Posts</a>
@@ -22,7 +22,7 @@
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
       <li class="nav-item">
-        <a class="btn" (click)="logout()">Logout</a>
+        <a [ngClass]="logged()?'btn':'btn disabled'" (click)="logout()" >Logout</a>
       </li>
     </ul>
   </div>

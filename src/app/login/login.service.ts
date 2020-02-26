@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '.././interfaces/User';
 import { HttpClient } from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
+import {map, tap, shareReplay} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,11 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class LoginService {
     private usersUrl = '/login';
-    private visible = false;
-    private currentUser : User;
+    private currentUser: User;
 
     constructor(private http: HttpClient,
-                private cookieService: CookieService ) {}
+                private cookieService: CookieService ) {
+                }
 
     // get("/api/users")
 
@@ -33,7 +33,7 @@ export class LoginService {
     logUser(newUser: User): Observable<User> {
       console.log('log user... ' + newUser.username);
       return this.http.post(this.usersUrl, newUser)
-      .pipe(map((res=>res as User)))
+      .pipe(map((res)=>res as User))
       .pipe(tap(res => {
         console.log('res is'+res)
         this.currentUser = res;
@@ -43,8 +43,9 @@ export class LoginService {
 
     logout() {
       console.log(`service logout called!`)
+      let logged = !!this.currentUser;
       this.cookieService.delete('userCookie');
-      localStorage.clear();
+      localStorage.setItem('logged', logged.toString());
       this.currentUser = null;
     }
 }

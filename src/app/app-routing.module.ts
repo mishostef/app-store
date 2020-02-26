@@ -10,11 +10,12 @@ import {PostsComponent} from './posts/posts.component';
 import {RegisterComponent} from './register/register.component';
 import {ProductsComponent} from './products/products.component';
 import {AuthGuard} from './auth.guard';
+import {AppReolverService} from './shared/resolvers/app-reolver.service'
 import { from } from 'rxjs';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent } ,
+  { path: 'login', component: LoginComponent, resolve: {cres: AppReolverService} } ,
   {path: 'contacts', component: ComponentListContainerComponent},
   {path: 'posts', component: PostsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
@@ -23,14 +24,13 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
 
-
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [LoginService, AuthGuard],
+  providers: [AppReolverService, LoginService, AuthGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
