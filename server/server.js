@@ -1,10 +1,11 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var cookieParser = require("ccokie-parser");
 
 
 var app = express();
 app.use(bodyParser.json());
+app.use(cookieParser);
 
 // Create link to Angular build directory
 var distDir =  __dirname + '/../' + '/dist/';

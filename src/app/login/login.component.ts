@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor( private loginService: LoginService, private router: Router,
                private actr: ActivatedRoute) {
-      this.actr.data.pipe(map((d) => d.cres)).subscribe(x => console.log(x));
+    //  this.actr.data.pipe(map((d) => d.cres)).subscribe(x => console.log(x));
      }
   users: User[];
   public logged: boolean;
@@ -29,9 +29,8 @@ export class LoginComponent implements OnInit {
 subscribe(() => {
     this.logged = this.loginService.isLogged();
     localStorage.setItem('logged', this.logged.toString());///
-    console.log('in serice logged:' + this.logged);
-    console.log('localst. inservice:' + localStorage.getItem('logged'));
-
+    //console.log('in serice logged:' + this.logged);
+    //console.log('localst. inservice:' + localStorage.getItem('logged'));
     setTimeout(() => {
            this.router.navigate(['posts']);
            localStorage.setItem('logged', this.logged.toString());

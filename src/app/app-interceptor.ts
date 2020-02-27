@@ -10,8 +10,11 @@ const apiUrl = environment.apiUrl;
 export class AppInterceptor implements HttpInterceptor {
   intercept(req:HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
     const fullURL =req.url.includes('http')?req.url:`${apiUrl}${req.url}`;
-    const isApiRequest = fullURL.includes(apiUrl);
-    return next.handle(req.clone({url:fullURL, withCredentials: isApiRequest}));
+    const isApiRequest = fullURL.includes('api');
+    var token = document.cookie;
+    console.log('interceptor token:'+ token)
+    return next.handle(req.clone({url:fullURL, withCredentials: isApiRequest})
+    );
   }
 }
 

@@ -110,4 +110,10 @@ app.delete("/api/contacts/:id", function(req, res) {
   });
 });
 
+
+
+app.get("/api/auth",function(req,res){
+  res.send("alabala");
+})
+
 }

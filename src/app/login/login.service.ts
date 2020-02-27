@@ -16,6 +16,9 @@ export class LoginService {
                 private cookieService: CookieService ) {
                 }
 
+                makePost():any{
+                  return this.http.get<any>('/api/auth').toPromise().then(x=>console.log(x));
+                      }
     // get("/api/users")
 
     getUsers(): Observable<User[]> {

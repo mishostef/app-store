@@ -27,6 +27,10 @@ ngOnInit() {
      //
 }
 
+auth():any{
+  this.loginService.makePost();
+}
+
 logged(): boolean {
      return  localStorage.getItem('logged') === 'true' ? true : false;
    }
@@ -34,8 +38,8 @@ logged(): boolean {
 
 logout(){
     this.loginService.logout();
-    console.log('local storage:' + localStorage.getItem('logged'));
-    console.log('in logout logged:' + this.logged());
+    //console.log('local storage logout:' + localStorage.getItem('logged'));
+    //console.log('in logout logged:' + this.logged());
     this.router.navigate(['']);
 
   }
