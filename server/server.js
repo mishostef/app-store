@@ -1,12 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var cookieParser = require("ccokie-parser");
+const secret='secret';
+var cookieParser= require("cookie-parser");
 
 
 var app = express();
 app.use(bodyParser.json());
-app.use(cookieParser);
 
+app.use(cookieParser(secret));
 // Create link to Angular build directory
 var distDir =  __dirname + '/../' + '/dist/';
 app.use(express.static(distDir));
