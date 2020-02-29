@@ -1,10 +1,11 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+
+
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 var db;
 var CONTACTS_COLLECTION = "contacts";
 
+const jwt = require("../jwt");
 
 
 module.exports=(app)=>{
@@ -113,7 +114,9 @@ app.delete("/api/contacts/:id", function(req, res) {
 
 
 app.get("/api/auth",function(req,res){
-  res.send("alabala");
+  let cookie =req.cookies['userCookie'] 
+  console.log(cookie)
+  jwt.verifyToken(cookie).then(res.send('hola')).catch(err=>console.error(err))
 })
 
 }
