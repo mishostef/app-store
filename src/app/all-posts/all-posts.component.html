@@ -3,9 +3,9 @@
     <p>message:{{post.postMessage}}</p>
     <p>author:{{post.author}}</p>
     <p>published on:{{post.publishDate|date: 'short'}}</p>
-    <button  (click)="like()">like</button>
-    <button  (click)="dislike()">dislike</button>
-    <span appStyle defaultColor="green">like: {{post.likes}}</span>
+    <button  (click)="like()"><span class="fa fa-thumbs-up fa-lg" aria-hidden="true"></span> like</button>
+    <button  (click)="dislike()"><span class="fa fa-thumbs-down fa-lg" aria-hidden="true"></span>dislike</button>
+    <span appStyle defaultColor="green"> like: {{post.likes}}</span>
     <span appStyle defaultColor="red">dislike: {{post.dislikes}}</span>
   </div>
 </div>
