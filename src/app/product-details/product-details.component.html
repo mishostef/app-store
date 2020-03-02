@@ -3,11 +3,30 @@
 
 </div>
 <div class="form-group">
-  <button class="form-control" [ngStyle]="{'background-color':countToBuy=== product.inStock ? 'red' : 'green' }"
-  (click)="increment()" [disabled]="countToBuy=== product.inStock">increment</button>
-  <button class="form-control" [ngStyle]="{'background-color':countToBuy===0 ? 'red' : 'green' }"
-  (click)="decrement()" [disabled]="countToBuy=== 0">decrement</button>
-  <button class="form-control">buy</button>
-  <div class="form-control">in Stock: {{product.inStock}} price: {{product.price}}</div>
-  <div class="form-l">countToBuy: {{countToBuy}}</div>
+  <div class="row">
+    <div class="col-xs-8" id="info">
+      <div class="row" id="info">
+        <div class="col-xs-8">countToBuy:</div>
+        <div class="col-xs-4"> {{countToBuy}}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">Price:</div>
+        <div class="col-xs-6" id="price">
+          <span id="spanprice" class="purple" >{{countToBuy*product.price}}</span>
+          <span class="text-success">BGN</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <button class="form-control" [ngStyle]="{'background-color':countToBuy=== product.inStock ? 'red' : 'green' }"
+      (click)="increment()" [disabled]="countToBuy=== product.inStock"><span class="fa fa-plus text-light icon"></span></button>
+      <button class="form-control" [ngStyle]="{'background-color':countToBuy===0 ? 'red' : 'green' }"
+      (click)="decrement()" [disabled]="countToBuy=== 0"><span class="fa fa-minus text-light icon"></span></button>
+      <button class="form-control"><span class="fa fa-shopping-basket text-warning icon basket"></span></button>
+    </div>
+  </div>
+  <div>
+      <div class="form-control">in Stock: {{product.inStock}} price: {{product.price}}</div>
+  </div>
 </div>
+

@@ -6,8 +6,42 @@ img{
 div.form-group{
   display: inline-block;
   vertical-align: top;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
 }
-button{
-  display:block;
+div#info{
+  left:16px;
+  border: 1px solid gainsboro;
+  background-color: beige;
+
 }
 
+button{
+  margin-left: 0px;
+  display:block;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 660px) {
+ .form-control,div#info{
+  font-size: 0.5rem;
+ }
+ span.icon {
+    margin-left: -4px;
+  }
+  span.icon.basket{
+    margin-left: -6px;
+  }
+}
+button:hover{
+  opacity: 0.3;
+}
+span{
+  margin-left: 2px;
+}
+span.purple{
+  margin-left:0px;
+  color:blueviolet;
+}
+#small{
+  width: 50%;
+}
