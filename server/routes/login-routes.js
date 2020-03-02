@@ -1,9 +1,9 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var mongodb = require('mongodb')
-var ObjectID = mongodb.ObjectID
-var db
-var USERS_COLLECTION = 'users';
+//var ObjectID = mongodb.ObjectID
+var  db = require('../db')
+//var USERS_COLLECTION = 'users';
 
 var path = require('path')
 var distDir = path.join(__dirname, '/../', '/../', '/dist/')
@@ -12,19 +12,9 @@ const jwt = require('../jwt')
 
 module.exports = (app) => {
   app.use(express.static(distDir))
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/test', function (err, client) {
-    if (err) {
-      console.log(err)
-      process.exit(1)
-    }
-
-    // Save database object from the callback for reuse.
-    db = client.db()
-    console.log('Database connection ready')
-  })
 
   app.get('/api/users', function (req, res) {
-    db.collection(USERS_COLLECTION).find({}).toArray(function (err, docs) {
+    db.users.find({}).toArray(function (err, docs) {
       if (err) {
         handleError(res, err.message, 'Failed to get users.')
       } else {
@@ -48,7 +38,7 @@ module.exports = (app) => {
     if (!req.body.username) {
       handleError(res, 'Invalid user input', 'Must provide a name.', 400)
     } else {
-      var currUser = db.collection(USERS_COLLECTION).findOne({ username: newUser.username,password:newUser.password })
+      var currUser = db.users.findOne({ username: newUser.username,password:newUser.password })
       currUser.then(u =>{
         if(!u)
         handleError(res, 'Invalid user input', 'Err in name or pass.', 400);

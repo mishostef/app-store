@@ -2,8 +2,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var mongodb = require('mongodb')
 var ObjectID = mongodb.ObjectID
-var db
-var POSTS_COLLECTION = 'posts'
+var db = require('../db')
+// var POSTS_COLLECTION = 'posts'
 
 var path = require('path')
 var distDir = path.join(__dirname, '/../', '/../', '/dist/')
@@ -12,19 +12,9 @@ var usersPath = '/posts'
 module.exports = (app) => {
   app.use(express.static(distDir))
   console.log(distDir)
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/test', function (err, client) {
-    if (err) {
-      console.log(err)
-      process.exit(1)
-    }
-
-    // Save database object from the callback for reuse.
-    db = client.db()
-    console.log('Database connection ready')
-  })
-
+  
   app.get('/api/posts', function (req, res) {
-    db.collection(POSTS_COLLECTION).find({}).toArray(function (err, docs) {
+    db.posts.find({}).toArray(function (err, docs) {
       if (err) {
         handleError(res, err.message, 'Failed to get users.')
       } else {
@@ -48,7 +38,7 @@ module.exports = (app) => {
     if (!req.body.author) {
       handleError(res, 'Invalid user input', 'Must provide a name.', 400)
     } else {
-      db.collection(POSTS_COLLECTION).insertOne(newPost, function (err, doc) {
+      db.posts.insertOne(newPost, function (err, doc) {
         if (err) {
           handleError(res, err.message, 'Failed to create new post.')
         } else {
@@ -59,7 +49,7 @@ module.exports = (app) => {
   })
 
   app.get('/api/products', function (req, res) {
-    db.collection('products').find({}).toArray(function (err, docs) {
+    db.products.find({}).toArray(function (err, docs) {
       if (err) {
         handleError(res, err.message, 'Failed to get products.')
       } else {
@@ -69,7 +59,7 @@ module.exports = (app) => {
   })
 
   app.get('/api/posts/all', function (req, res) {
-    db.collection('posts').find({}).toArray(function (err, docs) {
+    db.posts.find({}).toArray(function (err, docs) {
       if (err) {
         handleError(res, err.message, 'Failed to get all posts.')
       } else {

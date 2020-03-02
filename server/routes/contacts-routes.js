@@ -2,30 +2,17 @@
 
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
-var db;
-var CONTACTS_COLLECTION = "contacts";
-
+var  collections =require('../db');
 const jwt = require("../jwt");
 
 
 module.exports=(app)=>{
 
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-
-  // Save database object from the callback for reuse.
-  db = client.db();
-  console.log("Database connection ready");
-
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+var server = app.listen(process.env.PORT || 8080, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
 });
+
 
 
 // Generic error handler used by all endpoints.
@@ -40,7 +27,9 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+
+
+collections.contacts.find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
@@ -56,7 +45,7 @@ app.post("/api/contacts", function(req, res) {
   if (!req.body.name) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   } else {
-    db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+    collections.contacts.insertOne(newContact, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to create new contact.");
       } else {
@@ -73,7 +62,7 @@ app.post("/api/contacts", function(req, res) {
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+  collections.contacts.findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
     } else {
@@ -86,7 +75,7 @@ app.put("/api/contacts/:id", function(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(CONTACTS_COLLECTION).updateOne
+  collections.contacts.updateOne
   ({_id: new ObjectID(req.params.id)},
   {$set: { "name": req.body.name ,
      email:req.body.email,
@@ -102,7 +91,7 @@ app.put("/api/contacts/:id", function(req, res) {
 });
 
 app.delete("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+  collections.contacts.deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete contact");
     } else {
@@ -114,7 +103,7 @@ app.delete("/api/contacts/:id", function(req, res) {
 
 
 app.get("/api/auth",function(req,res){
-  let cookie =req.cookies['userCookie'] 
+  let cookie =req.cookies['userCookie']
   console.log(cookie)
   jwt.verifyToken(cookie).then(res.send('hola')).catch(err=>console.error(err))
 })
