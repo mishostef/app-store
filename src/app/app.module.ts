@@ -21,6 +21,7 @@ import {AppInterceptor} from './app-interceptor';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { CookieService } from 'ngx-cookie-service';
 import { StyleDirective } from './shared/directives/style.directive';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { StyleDirective } from './shared/directives/style.directive';
     ProductsComponent,
     ProductDetailsComponent,
     AllPostsComponent,
-    StyleDirective
+    StyleDirective,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
