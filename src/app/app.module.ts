@@ -22,6 +22,7 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { CookieService } from 'ngx-cookie-service';
 import { StyleDirective } from './shared/directives/style.directive';
 import { CarouselComponent } from './carousel/carousel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LoginService,

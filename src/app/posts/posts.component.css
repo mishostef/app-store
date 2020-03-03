@@ -1,9 +1,12 @@
 label{
-    display:block; 
+    display:block;
     float:left;
     margin-left:10px;
-    width:100px;    
+    width:100px;
     }
 textarea,input{
     color: blue;
 }
+/*div.row>{
+  display: inline-block;
+}*/

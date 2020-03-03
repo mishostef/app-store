@@ -1,5 +1,5 @@
-<div class="row">
-  <div #postItem class="col-sm-4 bg-warning">
+<div>
+  <div id="postItem" class="bg-warning" [@openClose]="isOpen ? 'open' : 'closed'" (click)="toggle()">
     <p>message:{{post.postMessage}}</p>
     <p>author:{{post.author}}</p>
     <p>published on:{{post.publishDate|date: 'short'}}</p>
