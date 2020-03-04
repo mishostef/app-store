@@ -23,6 +23,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { StyleDirective } from './shared/directives/style.directive';
 import { CarouselComponent } from './carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +55,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule
+
   ],
   providers: [
     LoginService,

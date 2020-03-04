@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
-    "@angular/cdk": "~8.2.3",
+    "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -36,6 +36,7 @@
     "ngx-cookie-service": "^2.3.0",
     "package.json": "^2.0.1",
     "path": "^0.12.7",
+    "pkg.json": "^2.0.7",
     "rxjs": "~6.4.0",
     "server": "../mean-app-store/server.js/server",
     "tslib": "^1.10.0",

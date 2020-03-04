@@ -10,3 +10,10 @@ textarea,input{
 /*div.row>{
   display: inline-block;
 }*/
+li{
+  list-style-type: none;
+}
+.tile-image {
+  width:100%;
+  height: auto;
+}
